@@ -4,11 +4,6 @@ import (
 	"testing"
 )
 
-type Rectangle struct {
-    Width float64
-    Height float64
-}
-
 func TestPerimeter(t *testing.T) {
 
 	assertCorrectMessage := func(t testing.TB, got, want float64) {
@@ -36,11 +31,20 @@ func TestArea(t *testing.T) {
 		}
 	}
 
-	t.Run("get area", func(t *testing.T) {
+	t.Run("get area of rectangle", func(t *testing.T) {
 		rectangle := Rectangle{10.0, 10.0}
-		got := Area(rectangle)
+		got := rectangle.Area()
 		want := 100.0
 		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("get area of circle", func(t *testing.T) {
+		circle := Circle{10}
+		got := circle.Area()
+		want := 314.1592653589793
+		if got != want {
+			t.Errorf("got %g want %g", got, want)
+		}
 	})
 
 }
